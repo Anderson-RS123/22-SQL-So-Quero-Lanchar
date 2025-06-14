@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Safe Route AI - Login</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f3f4f6; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 300px; }
+    input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+    button { background-color: #2563eb; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+    <button onclick="window.location.href='register.html'">Cadastrar Empresa</button>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      fetch('http://localhost:5000/api/empresas/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          window.location.href = 'dashboard.html';
+        } else {
+          alert('Login falhou');
+        }
+      })
+      .catch(() => alert('Erro na requisição'));
+    }
+  </script>
+</body>
+</html>
