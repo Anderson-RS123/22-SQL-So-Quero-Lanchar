@@ -1,0 +1,54 @@
+# Arquivos de configurações de ambiente e segredos
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+.secret
+keys/
+
+# Dependências de Node.js (backend e frontend)
+node_modules/
+dist/
+build/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.parcel-cache/
+.next/ # Se estiver usando Next.js no frontend
+.svelte-kit/ # Se estiver usando SvelteKit no frontend
+.vite/ # Se estiver usando Vite no frontend
+
+# Dependências de Python (IA)
+# __pycache__/
+# *.pyc
+# *.pyd
+# .venv/
+# venv/
+# env/
+# *.egg-info/
+# .pytest_cache/
+# .ipynb_checkpoints/ # Notebooks Jupyter
+# *.log
+
+# Arquivos de sistema operacional
+# .DS_Store
+# Thumbs.db
+
+# Arquivos temporários e de editor
+*.tmp
+*.bak
+*~
+*.swp
+.vscode/ # Se quiser ignorar configurações do VS Code específicas de cada um
+
+
+# Arquivos gerados pela IA (se ela salvar algo localmente para processamento)
+# Exemplo: Imagens temporárias ou vídeos brutos
+# NUNCA versionar imagens grandes ou vídeos
+# temp_images/
+# temp_videos/
+# output_data/ # Se a IA gerar algum output localmente antes de enviar para o DB
