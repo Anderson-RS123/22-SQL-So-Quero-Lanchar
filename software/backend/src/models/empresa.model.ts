@@ -1,14 +1,14 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Schema, Types } from 'mongoose';
 import bcrypt from 'bcryptjs'; // Para criptografar a senha
 
 // Define a interface para o documento Empresa no TypeScript
 export interface IEmpresa extends Document {
+  _id: Types.ObjectId; // Adicione esta linha para o tipo do _id
   nome: string;
   email: string;
   senha: string;
   createdAt: Date;
   updatedAt: Date;
-  // Método para comparar a senha fornecida com a senha hash no banco de dados
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
