@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Empresa</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f3f4f6; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 300px; }
+    input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+    button { background-color: #2563eb; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Cadastro</h2>
+    <input type="text" id="nome_empresa" placeholder="Nome da Empresa">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="window.location.href='login.html'">Voltar</button>
+  </div>
+
+  <script>
+    function cadastrar() {
+      const nome_empresa = document.getElementById('nome_empresa').value;
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      fetch('http://localhost:5000/api/empresas/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome_empresa, email, senha })
+      })
+      .then(res => {
+        if (res.ok) {
+          alert('Empresa cadastrada com sucesso!');
+          window.location.href = 'login.html';
+        } else {
+          alert('Falha ao cadastrar');
+        }
+      })
+      .catch(() => alert('Erro na requisição'));
+    }
+  </script>
+</body>
+</html>
