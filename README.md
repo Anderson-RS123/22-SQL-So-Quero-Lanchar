@@ -39,4 +39,9 @@ pip install -r requirements.txt
 
 Executar o projeto:
 
-python app.py 
+python app.py
+
+## Documentação e Detalhes API Node
+
+postman: https://www.postman.com/matheus-berger/saferoute-ai/collection/6un2zoq/saferoute-ai-api
+
