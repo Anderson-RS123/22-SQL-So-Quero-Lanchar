@@ -38,8 +38,11 @@ Instalar as dependências:
 pip install -r requirements.txt
 
 Executar o projeto:
+Envio da imagem analisada: 
+python classificador_imagem.py
 
-python app.py
+Sistema: 
+Acessar a pasta backend no terminal, e rodar o comando: npmramdev
 
 ## Documentação e Detalhes API Node
 
