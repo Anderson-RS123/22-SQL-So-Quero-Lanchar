@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f3f4f6; padding: 30px; }
+    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    .title { font-size: 24px; margin-bottom: 20px; }
+    .count { font-size: 40px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1 class="title">Safe Route AI - Dashboard</h1>
+
+  <div class="card">
+    <h2>Uso de Celular</h2>
+    <p id="celular" class="count">0</p>
+  </div>
+
+  <div class="card">
+    <h2>Motorista Cansado</h2>
+    <p id="cansado" class="count">0</p>
+  </div>
+
+  <button onclick="logout()" style="padding: 10px 20px; background: #dc2626; color: white; border: none; border-radius: 5px;">Logout</button>
+
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'login.html';
+    }
+
+    fetch('http://localhost:5000/api/eventos', {
+      method: 'GET',
+      headers: { 'Authorization': 'Bearer ' + token }
+    })
+    .then(res => res.json())
+    .then(data => {
+      const celular = data.filter(e => e.tipo === 'uso_celular').length;
+      const cansado = data.filter(e => e.tipo === 'cansaco').length;
+      document.getElementById('celular').innerText = celular;
+      document.getElementById('cansado').innerText = cansado;
+    })
+    .catch(() => alert('Erro ao carregar dados'));
+
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>
